@@ -3,9 +3,9 @@ services:
   # The Application
   app:
     container_name: app
-    build:
-      context: ./app
-      dockerfile: app.dockerfile
+    build: ./app
+#      context: ./app
+#      dockerfile: pp.dockerfile
     working_dir: /var/www
     volumes:
       - appdata:/var/www
@@ -17,9 +17,9 @@ services:
   # The Web Server
   web:
     container_name: web
-    build:
-      context: ./web
-      dockerfile: web.dockerfile
+    build: ./web
+#      context: ./web
+#      dockerfile: web.dockerfile
     working_dir: /var/www
     volumes_from:
       - app
