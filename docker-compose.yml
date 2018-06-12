@@ -4,11 +4,12 @@ services:
   app:
     container_name: app
     build:
-      context: ./
+      context: ./app
       dockerfile: app.dockerfile
     working_dir: /var/www
     volumes:
       - appdata:/var/www
+#      - "./www:/var/www"
     environment:
       - "DB_PORT=3306"
       - "DB_HOST=database"
@@ -17,13 +18,13 @@ services:
   web:
     container_name: web
     build:
-      context: ./
+      context: ./web
       dockerfile: web.dockerfile
     working_dir: /var/www
     volumes_from:
       - app
     ports:
-      - 8080:80
+      - 8888:80
 
   # The Database
   database:
@@ -31,6 +32,7 @@ services:
     image: mysql:5.6
     volumes:
       - dbdata:/var/lib/mysql
+#      - "./bbdd:/var/lib/mysql"
     environment:
       - "MYSQL_DATABASE=homestead"
       - "MYSQL_USER=homestead"
@@ -40,5 +42,5 @@ services:
         - "33061:3306"
 
 volumes:
-  appdata:
   dbdata:
+  appdata:
