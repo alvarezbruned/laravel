@@ -11,15 +11,14 @@ RUN apt-get install -y openssl zip unzip git
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN docker-php-ext-install pdo mbstring
 
-#RUN rm -fR /var/www
-RUN mkdir /laravel
-WORKDIR /laravel
-RUN git clone https://github.com/laravel/laravel.git /laravel
+RUN mkdir /var/www/laravel
+WORKDIR /var/www/laravel
+RUN git clone https://github.com/laravel/laravel.git /var/www/laravel
 RUN composer install
 
 
-#RUN mkdir -p /var/www/html
+RUN mkdir -p /var/www/laravel
 
-RUN cp /laravel/.env.example /laravel/.env
-#RUN chown -R www-data:www-data /var/www
-RUN ls -lsa /laravel
+RUN cp /var/www/laravel/.env.example /var/www/laravel/.env
+RUN chown -R www-data:www-data /var/www/laravel
+RUN ls -lsa /var/www/laravel
