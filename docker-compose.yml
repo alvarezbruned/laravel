@@ -4,11 +4,11 @@ services:
   app:
     container_name: app
 #    build: ./app
-    image: albertalvarezbruned/laravel:app
-    working_dir: /var/www
+    image: albertalvarezbruned/laravel:laravel
+    working_dir: /laravel
     volumes:
-      - appdata:/var/www
-#      - "./www:/var/www"
+#      - appdata:/laravel
+      - "./laravel:/laravel"
     environment:
       - "DB_PORT=3306"
       - "DB_HOST=database"
@@ -18,7 +18,7 @@ services:
     container_name: web
 #    build: ./web
     image: albertalvarezbruned/laravel:web
-    working_dir: /var/www
+    working_dir: /laravel
     volumes_from:
       - app
     ports:
@@ -41,4 +41,3 @@ services:
 
 volumes:
   dbdata:
-  appdata:
