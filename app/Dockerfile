@@ -20,6 +20,6 @@ RUN composer install
 
 #RUN mkdir -p /var/www/html
 
-RUN cp /var/www/.env.example /laravel/.env
+RUN cp /laravel/.env.example /laravel/.env
 #RUN chown -R www-data:www-data /var/www
 RUN ls -lsa /laravel
