@@ -3,11 +3,11 @@ services:
   # The Application
   app:
     container_name: app
-#    build: ./app
-    image: albertalvarezbruned/laravel:app
-    working_dir: /var/www
+    build: ./app
+#    image: albertalvarezbruned/laravel:app
+    working_dir: /var/www/laravel
     volumes:
-      - appdata:/var/www
+      - appdata:/var/www/laravel
 #      - "./www:/var/www"
     environment:
       - "DB_PORT=3306"
@@ -18,7 +18,7 @@ services:
     container_name: web
 #    build: ./web
     image: albertalvarezbruned/laravel:web
-    working_dir: /var/www
+    working_dir: /var/www/laravel
     volumes_from:
       - app
     ports:
