@@ -32,4 +32,4 @@ RUN ls -lsa /var/www
 RUN php artisan key:generate
 
 #CMD cron
-CMD /var/www/run_tests.sh
+#CMD /var/www/run_tests.sh
