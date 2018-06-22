@@ -23,12 +23,13 @@ RUN cp /var/www/.env.example /var/www/.env
 COPY run_tests.sh /var/www
 RUN chmod +x /var/www/run_tests.sh
 
-ADD crontab /etc/cron.d/run_tests
-RUN chmod 0644 /etc/cron.d/run_tests
+#ADD crontab /etc/cron.d/run_tests
+#RUN chmod 0644 /etc/cron.d/run_tests
 
 
 RUN chown -R www-data:www-data /var/www
 RUN ls -lsa /var/www
 RUN php artisan key:generate
 
-CMD cron
+#CMD cron
+CMD /var/www/run_tests.sh
