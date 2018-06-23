@@ -3,8 +3,8 @@ services:
   # The Application
   app:
     container_name: app
-#    build: ./app
-    image: albertalvarezbruned/laravel:app
+    build: ./app
+#    image: albertalvarezbruned/laravel:app
     working_dir: /var/www
     volumes:
       - appdata:/var/www
@@ -23,6 +23,14 @@ services:
       - app
     ports:
       - 8888:80
+
+  cron:
+    container_name: cron
+#    build: ./cron_tests
+    image: albertalvarezbruned/laravel:cron_tests
+    working_dir: /var/www
+    volumes_from:
+      - app
 
   # The Database
   database:
