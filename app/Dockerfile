@@ -8,7 +8,6 @@ RUN apt-get update && apt-get install -y libmcrypt-dev \
 
 
 RUN apt-get install -y openssl zip unzip git
-RUN apt-get install -y cron
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN docker-php-ext-install pdo mbstring
 
@@ -21,17 +20,6 @@ RUN mkdir -p /var/www/html
 
 RUN cp /var/www/.env.example /var/www/.env
 
-COPY run_tests.sh /root
-RUN chmod +x /root/run_tests.sh
-
-ADD crontab /etc/cron.d/run_tests
-RUN chmod 0644 /etc/cron.d/run_tests
-RUN touch /var/log/cron.log
-CMD cron && tail -f /var/log/cron.log
-
-
 RUN chown -R www-data:www-data /var/www
 RUN ls -lsa /var/www
 RUN php artisan key:generate
-
-## CMD ["cron", "-f"]
