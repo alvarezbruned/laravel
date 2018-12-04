@@ -7,8 +7,7 @@ services:
     image: albertalvarezbruned/laravel:app
     working_dir: /var/www
     volumes:
-      - appdata:/var/www
-#      - "./www:/var/www"
+      - ./www:/var/www:rw
     environment:
       - "DB_PORT=3306"
       - "DB_HOST=database"
@@ -49,4 +48,3 @@ services:
 
 volumes:
   dbdata:
-  appdata:
